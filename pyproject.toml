@@ -39,6 +39,11 @@ dependencies = [
     "moviepy==1.0.3",
     "typer>=0.9.0",
     "pycolmap",
+    "faiss-gpu-cu12",
+    "pandas",
+    "prettytable",
+    "numba",
+    "pypose",
 ]
 
 [project.optional-dependencies]
@@ -59,11 +64,19 @@ source = "vcs"
 [tool.hatch.build.targets.wheel]
 packages = ["src/depth_anything_3"]
 
+[tool.hatch.build.targets.wheel.force-include]
+"da3_streaming/da3_streaming.py" = "da3_streaming.py"
+"da3_streaming/loop_utils" = "loop_utils"
+"da3_streaming/fastloop" = "fastloop"
+
 [tool.hatch.build.targets.sdist]
 include = [
   "/README.md",
   "/pyproject.toml",
   "/src/depth_anything_3",
+  "/da3_streaming/da3_streaming.py",
+  "/da3_streaming/loop_utils",
+  "/da3_streaming/fastloop",
 ]
 
 [tool.hatch.metadata]
